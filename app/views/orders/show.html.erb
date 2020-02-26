@@ -1,5 +1,5 @@
 <% @orders.each do |order| %>
-  <% order.arts.each do |art| %>
+  <%= order.arts.each do |art| %>
     <%= art.name %>
     <%= art.description %>
     <%= art.type %>
@@ -7,3 +7,4 @@
     <%= art.quantity %>
   <% end %>
 <% end %>
+<%= raise %>

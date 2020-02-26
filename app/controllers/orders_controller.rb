@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(user: current_user)
+    # @orders = current_user.orders
   end
 
   def show
