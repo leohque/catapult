@@ -1,0 +1,9 @@
+<% @orders.each do |order| %>
+  <% order.arts.each do |art| %>
+    <%= art.name %>
+    <%= art.description %>
+    <%= art.type %>
+    <%= art.price %>
+    <%= art.quantity %>
+  <% end %>
+<% end %>

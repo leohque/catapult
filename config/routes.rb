@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get '/profile', to: 'pages#profile'
   resources :arts, except: [:index, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :orders, only: [:index, :show, :new, :create]
+
 end
