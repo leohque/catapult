@@ -14,8 +14,9 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-
-gem 'dotenv-rails', groups: [:development, :test]
+# Cloudinary image upload ge,
+gem 'cloudinary', '~> 1.12.0'
+# Dotenv for environment variables
 
 group :development do
   gem 'web-console', '>= 3.3.0'
