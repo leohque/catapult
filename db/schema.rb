@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_02_26_194509) do
   create_table "arts", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "type"
+    t.string "category"
     t.integer "price"
     t.integer "quantity"
     t.bigint "user_id"
