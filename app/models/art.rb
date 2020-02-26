@@ -1,4 +1,5 @@
 class Art < ApplicationRecord
   belongs_to :user
-  belongs_to :orders
+  has_many :art_orders
+  has_many :orders, through: :art_orders
 end
