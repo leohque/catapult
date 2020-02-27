@@ -1,12 +1,13 @@
 class ArtsController < ApplicationController
 
   def index
-    @arts = Art.all
+    @arts = policy_scope(Art).order(created_at: :desc)
   end
 
   def show
     @art = Art.find(params[:id])
-    @arts = policy_scope(Art)
+
+    authorize @art
   end
 
   def new
@@ -19,29 +20,33 @@ class ArtsController < ApplicationController
     @art = Art.new(art_params)
     @art.user = current_user # code to connect the new art to the user
     authorize @art
-    
+
     if @art.save
-      redirect_to root_path #to root while we don't have a user_path
+      redirect_to arts_path  #to root while we don't have a user_path
     else
       render :new
     end
   end
 
   def edit
-    @art = Art.find(art_params)
+    @art = Art.find(params[:id])
 
     authorize @art
   end
 
   def update
     @art = Art.find(art_params)
-    @art.update
+    @art.save
   end
 
   def destroy
     @art = Art.find(params[:id])
+
+    authorize @art
+
     @art.destroy
-    redirect_to root_path #to root while we don't have a user_path
+
+    redirect_to arts_path #to root while we don't have a user_path
   end
 
   private

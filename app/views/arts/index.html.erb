@@ -1,3 +1,11 @@
-<% @arts.each do |art| %>
-  <%= art.name %>
-<% end %>
+<div class="container d-flex justify-content-center my-3">
+  <% @arts.each do |art| %>
+    <div class="card">
+      <%= art.id %>
+      <%= link_to art.name, art_path(art) %>
+    </div>
+  <% end %>
+</div>
+
+
+<%= link_to "New Art", new_art_path %>
