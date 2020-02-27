@@ -36,3 +36,5 @@ gem 'devise'
 
 # Authorization
 gem 'pundit'
+
+gem 'faker'
