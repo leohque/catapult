@@ -1,8 +1,9 @@
 <div class="container d-flex justify-content-center my-3 flex-wrap">
   <% @arts.each do |art| %>
     <div class="card w-25 m-3">
-      <%= art.id %>
+      ID: <%= art.id %>
       <%= link_to art.name, art_path(art) %>
+      Created by <%= art.user.email %>
     </div>
   <% end %>
 </div>
