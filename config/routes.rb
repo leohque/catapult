@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/profile', to: 'pages#profile'
   resources :arts
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :orders, only: [:index, :show, :new, :create]
+  resources :orders
 
 
   get 'users/:user_id', to: 'users#show', as: 'user_profile'

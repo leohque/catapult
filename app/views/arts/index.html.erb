@@ -7,6 +7,7 @@
       <% art.photos.each do |photo| %>
         <%= cl_image_tag photo.key, height: 150, width: 150, crop: :fill %>
       <% end %>
+      <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}" %>
     </div>
   <% end %>
 </div>
