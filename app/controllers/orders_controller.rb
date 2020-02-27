@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-
   def index
     # @orders = Order.where(user: current_user)
     @orders = current_user.orders
@@ -17,5 +16,4 @@ class OrdersController < ApplicationController
     @order.art_order = @art_order
     redirect_to @order_id
   end
-
 end
