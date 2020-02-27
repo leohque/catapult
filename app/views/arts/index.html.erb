@@ -4,6 +4,9 @@
       ID: <%= art.id %>
       <%= link_to art.name, art_path(art) %>
       Created by <%= link_to art.user.email, user_profile_path(art.user.id) %>
+      <% art.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 150, width: 150, crop: :fill %>
+      <% end %>
     </div>
   <% end %>
 </div>
