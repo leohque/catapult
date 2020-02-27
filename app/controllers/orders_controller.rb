@@ -29,7 +29,12 @@ class OrdersController < ApplicationController
     ArtOrder.create(order: @order, art: @art, price: @art.price)
   end
 
+  def edit
+
+  end
+
   def update
+
 
   end
 
