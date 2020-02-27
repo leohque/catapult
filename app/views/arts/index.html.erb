@@ -1,12 +1,17 @@
-<div class="container d-flex justify-content-center my-3">
+<div class="container d-flex justify-content-center my-3 flex-wrap">
   <% @arts.each do |art| %>
-    <div class="card">
-      <%= art.id %>
+    <div class="card w-25 m-3">
+      ID: <%= art.id %>
       <%= link_to art.name, art_path(art) %>
+      Created by <%= link_to art.user.email, user_profile_path(art.user.id) %>
+      <% art.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 150, width: 150, crop: :fill %>
+      <% end %>
       <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}" %>
     </div>
   <% end %>
 </div>
 
-
-<%= link_to "New Art", new_art_path %>
+<div class="container text-center">
+  <%= link_to "New Art", new_art_path %>
+</div>

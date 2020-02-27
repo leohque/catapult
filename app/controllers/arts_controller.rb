@@ -1,4 +1,5 @@
 class ArtsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @arts = policy_scope(Art).order(created_at: :desc)
@@ -35,8 +36,10 @@ class ArtsController < ApplicationController
   end
 
   def update
-    @art = Art.find(art_params)
-    @art.save
+    @art = Art.find(params[:id])
+    authorize @art
+    @art.update(art_params)
+    redirect_to art_path(@art)
   end
 
   def destroy

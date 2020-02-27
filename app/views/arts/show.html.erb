@@ -1,10 +1,19 @@
-<div class="container">
-  <%= @art.id %>
-  <%= @art.name %>
+<div class="container text-center my-3">
+  <%= link_to "Back to All", arts_path %><br>
+  <% if current_user == @art.user %>
+    <%= link_to "Edit", edit_art_path(@art) %>
+    <%= link_to "Delete", art_path(@art), method: :delete %>
+  <% end %>
+  <br><br>
+  <p>ID: <%= @art.id %></p>
+  <p>Name: <%= @art.name %></p>
+  <p>Category: <%= @art.category %></p>
+  <p>Price: $<%= @art.price %></p>
+  <p>Quantity: <%= @art.quantity %></p>
+  <p>User: <%= @art.user.email %></p>
 
   <% @art.photos.each do |photo| %>
     <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
   <% end %>
 
-  <%= link_to "Delete", art_path(@art), method: :delete %>
 </div>
