@@ -3,6 +3,7 @@
     <div class="card">
       <%= art.id %>
       <%= link_to art.name, art_path(art) %>
+      <%= link_to 'add to cart', orders_path(art), method: :post %>
     </div>
   <% end %>
 </div>
