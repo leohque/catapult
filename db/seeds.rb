@@ -7,12 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+require 'open-uri'
+
 
 puts 'Cleaning database...'
-User.destroy_all
+ArtOrder.destroy_all
 Art.destroy_all
 Order.destroy_all
-ArtOrder.destroy_all
+User.destroy_all
 
 puts 'Creating users...'
 
@@ -37,6 +39,8 @@ puts 'Creating arts...'
     quantity: Faker::Number.within(range: 1..10),
     user: User.all.sample
   )
+  # file = URI.open('https://giantbomb1.cbsistatic.com/uploads/original/9/99864/2419866-nes_console_set.png')
+  # art.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
   art.save!
 end
 
