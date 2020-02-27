@@ -1,10 +1,15 @@
 class ArtsController < ApplicationController
 
   def index
+    @arts = Art.all
+  end
+
+  def show
+    @art = Art.find(params[:id])
     @arts = policy_scope(Art)
   end
 
-   def new
+  def new
     @art = Art.new
 
     authorize @art
@@ -12,8 +17,9 @@ class ArtsController < ApplicationController
 
   def create
     @art = Art.new(art_params)
+    @art.user = current_user # code to connect the new art to the user
     authorize @art
-
+    
     if @art.save
       redirect_to root_path #to root while we don't have a user_path
     else
