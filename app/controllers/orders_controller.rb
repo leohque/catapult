@@ -17,34 +17,16 @@ class OrdersController < ApplicationController
   end
 
   def create
-    raise
-    @art = 1
-    if current_user.orders.where(status: 'open').any?
-      @order = current_user.find_by(status: 'open')
-      @art_order = ArtOrder.new(order: @order)
-      @art_order.art = @art
-      @art_order.price = @art.price
-      @art_order.save
-      redirect_to arts_path
-    else
-      @order = Order.new(user: current_user, status: "open")
-      @art_order = ArtOrder.new
+    @order = current_user.orders.find_by(status: 'open')
+    @order ||= Order.new(user: current_user, status: "open")
 
-    end
-# check if there is any open order
-# if not, create a new order with the art
-# else add the art ot the open order
+    authorize @order
 
+    @order.save unless @order.persisted?
 
+    @art = Art.find(params[:art_id])
 
-
-
-
-
-    @art_order.order = @order
-    @art_order.art = y
-    @order.art_order = @art_order
-    redirect_to @order_id
+    ArtOrder.create(order: @order, art: @art, price: @art.price)
   end
 
   def update
