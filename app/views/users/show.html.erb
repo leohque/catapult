@@ -1,1 +1,8 @@
-<%= @user.email %>
+<div class="container">
+  <%= @user.email %>
+  <ul>
+  <% @user.arts.each do |art| %>
+    <li><%= link_to art.name, art_path(art) %></li>
+  <% end %>
+  </ul>
+</div>
