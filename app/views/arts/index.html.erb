@@ -1,11 +1,12 @@
-<div class="container d-flex justify-content-center my-3">
+<div class="container d-flex justify-content-center my-3 flex-wrap">
   <% @arts.each do |art| %>
-    <div class="card">
+    <div class="card w-25 m-3">
       <%= art.id %>
       <%= link_to art.name, art_path(art) %>
     </div>
   <% end %>
 </div>
 
-
-<%= link_to "New Art", new_art_path %>
+<div class="container text-center">
+  <%= link_to "New Art", new_art_path %>
+</div>
