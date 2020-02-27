@@ -1,11 +1,20 @@
 class ArtsController < ApplicationController
 
+  def index
+    @arts = Art.all
+  end
+
+  def show
+    @art = Art.find(params[:id])
+  end
+
    def new
     @art = Art.new
   end
 
   def create
     @art = Art.new(art_params)
+    @art.user = current_user # code to connect the new art to the user
     if @art.save
       redirect_to root_path #to root while we don't have a user_path
     else
