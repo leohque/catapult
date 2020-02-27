@@ -14,6 +14,9 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+# Cloudinary image upload ge,
+gem 'cloudinary', '~> 1.12.0'
+# Dotenv for environment variables
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -30,3 +33,6 @@ end
 
 # Authentication
 gem 'devise'
+
+# Authorization
+gem 'pundit'
