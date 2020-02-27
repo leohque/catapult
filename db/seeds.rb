@@ -19,7 +19,7 @@ puts 'Creating users...'
 3.times do
   user = User.new(
     email:    Faker::Internet.email,
-    # address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+    address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
     password: "123456",
     password_confirmation: "123456"
   )
