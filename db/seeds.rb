@@ -39,8 +39,8 @@ puts 'Creating arts...'
     quantity: Faker::Number.within(range: 1..10),
     user: User.all.sample
   )
-  # file = URI.open('https://giantbomb1.cbsistatic.com/uploads/original/9/99864/2419866-nes_console_set.png')
-  # art.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+  file = URI.open('https://img.olx.com.br/thumbs256x256/85/858930021988067.jpg')
+  art.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
   art.save!
 end
 
