@@ -4,6 +4,9 @@ class ArtsController < ApplicationController
     @arts = policy_scope(Art)
   end
 
+  def show
+  end
+
    def new
     @art = Art.new
 
