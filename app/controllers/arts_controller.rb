@@ -35,8 +35,10 @@ class ArtsController < ApplicationController
   end
 
   def update
-    @art = Art.find(art_params)
-    @art.save
+    @art = Art.find(params[:id])
+    authorize @art
+    @art.update(art_params)
+    redirect_to art_path(@art)
   end
 
   def destroy
