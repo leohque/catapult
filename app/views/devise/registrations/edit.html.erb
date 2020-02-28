@@ -22,8 +22,8 @@
                 required: true,
                 input_html: { autocomplete: "current-password" } %>
     <%= f.input :address,
-                required: false,
-                input_html: { autocomplete: "address" } %>
+                required: true,
+                input_html: { autocomplete: "address", id: 'address-search' } %>
   </div>
 
   <div class="form-actions">
