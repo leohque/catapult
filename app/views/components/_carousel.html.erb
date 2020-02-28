@@ -1,15 +1,18 @@
-<% last = Art.last(3) %>
+<% latest_art = [] %>
+<% Art.last(10).each_with_index do |latest, i| %>
+  <% latest_art << latest if latest.photos[0].present? %>
+<% end %>
 <div class="container">
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%= cl_image_tag last[0].photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
+        <%= cl_image_tag latest_art[0].photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
       </div>
       <div class="carousel-item">
-        <%= cl_image_tag last[1].photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
+        <%= cl_image_tag latest_art[1].photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
       </div>
       <div class="carousel-item">
-        <%= cl_image_tag last[2].photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
+        <%= cl_image_tag latest_art[2].photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
