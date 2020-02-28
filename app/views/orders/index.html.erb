@@ -1,9 +1,16 @@
-<% @orders.each do |order| %>
-  <% order.arts.each do |art| %>
-    <%= art.name %>
-    <%= art.description %>
-    <%= art.type %>
-    <%= art.price %>
-    <%= art.quantity %>
+<div class="container d-flex justify-content-center my-3 flex-wrap">
+  <% @orders.each do |order| %>
+    <div class="card w-25 m-3">
+      <% order.arts.each do |art| %>
+        <li> Name: <%= art.name %> </li>
+        <li> Description: <%= art.description %> </li>
+        <li> Category: <%= art.category %> </li>
+        <li> Price: <%= art.price %> </li>
+        <%= link_to 'remove this item', orders_path(order) %>
+      <% end %>
+      <%= link_to 'remove this order', orders_path(order) %>
+    </div>
   <% end %>
-<% end %>
+</div>
+
+

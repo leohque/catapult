@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   def index
     # @orders = Order.where(user: current_user)
-    @orders = current_user.orders.order(created_at: :desc)
-    # @orders = policy_scope(Order).order(created_at: :desc) -> this would give us the same result
+    # @orders = current_user.orders.order(created_at: :desc)
+    @orders = policy_scope(Order).order(created_at: :desc) # -> this would give us the same result
   end
 
   def show
@@ -29,10 +29,14 @@ class OrdersController < ApplicationController
   end
 
   def edit
+    @order = Order.find(params[:id])
+
+
 
   end
 
   def update
+    @order = Order.find(params[:id])
 
 
   end
