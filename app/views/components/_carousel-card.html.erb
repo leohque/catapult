@@ -1,15 +1,16 @@
-<% last = Art.last(3) %>
+<% art %>
+<% raise %>
 <div class="container">
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%= cl_image_tag last[0].photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
+        <%= cl_image_tag art.photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
       </div>
       <div class="carousel-item">
-        <%= cl_image_tag last[1].photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
+        <%= cl_image_tag art.photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
       </div>
       <div class="carousel-item">
-        <%= cl_image_tag last[2].photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
+        <%= cl_image_tag art.photos[0].key, height:500, width:600, crop: :fill, class: 'd-block w-100' %>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
