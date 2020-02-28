@@ -2,9 +2,18 @@
   <%= order.arts.each do |art| %>
     <%= art.name %>
     <%= art.description %>
-    <%= art.type %>
+    <%= art.category %>
     <%= art.price %>
     <%= art.quantity %>
   <% end %>
 <% end %>
 <%= raise %>
+
+
+<% order.arts.each do |art| %>
+      <li> <%= art.name %> </li>
+      <li> <%= art.description %> </li>
+      <li> <%= art.category %> </li>
+      <li> <%= art.price %> </li>
+      <li> <%= art.quantity %> </li>
+      <li> <%= art.quantity %> </li>

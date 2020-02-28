@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   get '/profile', to: 'pages#profile'
   resources :arts
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :orders
+  resources :orders, except: :update
+  resources :art_orders, only: :destroy
 
 
   get 'users/:user_id', to: 'users#show', as: 'user_profile'
+  patch 'orders/:id', to: 'orders#cancel', as: 'order_cancel'
 
 end
