@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :arts
-  has_many :orders
+  has_many :arts, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
