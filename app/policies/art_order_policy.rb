@@ -4,4 +4,8 @@ class ArtOrderPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def destroy?
+    record.order.user == user
+  end
 end

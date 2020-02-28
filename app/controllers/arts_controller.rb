@@ -42,6 +42,14 @@ class ArtsController < ApplicationController
     redirect_to art_path(@art)
   end
 
+  def delete_photo
+    photo_index = params[:photo_index]
+    @art = Art.find(params[:art_id])
+    authorize @art
+    @art.photos[photo_index.to_i].purge
+    redirect_to edit_art_path(@art)
+  end
+
   def destroy
     @art = Art.find(params[:id])
 
@@ -55,6 +63,6 @@ class ArtsController < ApplicationController
   private
 
   def art_params
-    params.require(:art).permit(:name, :price, :description, :category, :quantity, photos: [])
+    params.require(:art).permit(:name, :price, :description, :category, :quantity, :photo_index, :art_id, photos: [])
   end
 end
