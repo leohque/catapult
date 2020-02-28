@@ -37,4 +37,8 @@ gem 'devise'
 # Authorization
 gem 'pundit'
 
+# Geocoding
+gem 'geocoder'
+
+# For Seeds
 gem 'faker'

@@ -1,17 +1,62 @@
+<div class="container d-flex flex-wrap">
+  <div class="card-category w-25" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+    <div class="card-category-description">A test</div>
+  </div>
+
+
+  <% @arts.each do |art| %>
+  <div class="card w-25">
+    <% if art.photos[1].present? %>
+    <div id="carouselExampleControls" class="card rounded shadow m-3 carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= cl_image_tag art.photos[0].key, height:300, width:300, crop: :fill, class: 'd-block w-100' %>
+        </div>
+        <div class="carousel-item">
+          <%= cl_image_tag art.photos[1].key, height:300, width:300, crop: :fill, class: 'd-block w-100' %>
+        </div>
+        <div class="carousel-item">
+          <%= cl_image_tag art.photos[0].key, height:300, width:300, crop: :fill, class: 'd-block w-100' %>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <% else %>
+      <%= cl_image_tag art.photos[0].key, height: 150, width: 150, crop: :fill, class: 'card-img' %>
+      <div class="card-img-overlay">
+        <h5 class="card-title">!? title</h5>
+        <p class="card-text">Card text</p>
+      </div>
+    <% end %>
+  </div>
+  <% end%>
+</div>
+
+
+
+<!-- below is the right thing -->
+
+
 <div class="container d-flex justify-content-center my-3 flex-wrap">
   <% @arts.each do |art| %>
-    <div class="card w-25 m-3">
-      ID: <%= art.id %>
-      <%= link_to art.name, art_path(art) %>
-      Created by <%= link_to art.user.email, user_profile_path(art.user.id) %>
-      <% art.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 150, width: 150, crop: :fill %>
-      <% end %>
-      <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}" %>
-    </div>
+  <div class="card w-25 m-3 p-3 rounded shadow">
+    ID: <%= art.id %>
+    <%= link_to art.name, art_path(art) %>
+    Created by <%= link_to art.user.email, user_profile_path(art.user.id) %>
+
+    <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}" %>
+  </div>
   <% end %>
 </div>
 
 <div class="container text-center">
   <%= link_to "New Art", new_art_path %>
 </div>
+
