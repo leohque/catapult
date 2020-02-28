@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :arts
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :orders
+  resources :art_orders, only: :destroy
 
 
   get 'users/:user_id', to: 'users#show', as: 'user_profile'

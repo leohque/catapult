@@ -1,14 +1,14 @@
 <div class="container d-flex justify-content-center my-3 flex-wrap">
   <% @orders.each do |order| %>
     <div class="card w-25 m-3">
-      <% order.arts.each do |art| %>
-        <li> Name: <%= art.name %> </li>
-        <li> Description: <%= art.description %> </li>
-        <li> Category: <%= art.category %> </li>
-        <li> Price: <%= art.price %> </li>
-        <%= link_to 'remove this item', orders_path(order) %>
+      <% order.art_orders.each do |art_order| %>
+        <li> Name: <%= art_order.art.name %> </li>
+        <li> Description: <%= art_order.art.description %> </li>
+        <li> Category: <%= art_order.art.category %> </li>
+        <li> Price: <%= art_order.art.price %> </li>
+        <%= link_to 'remove this item', art_order_path(art_order), method: :delete %>
       <% end %>
-      <%= link_to 'remove this order', orders_path(order) %>
+      <%= link_to 'remove this order', order_path(order), method: :delete %>
     </div>
   <% end %>
 </div>
