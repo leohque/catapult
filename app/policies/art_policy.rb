@@ -17,6 +17,10 @@ class ArtPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def delete_photo?
+    record.user == user
+  end
+
   def destroy?
     record.user == user
   end

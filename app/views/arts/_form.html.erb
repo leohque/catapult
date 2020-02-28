@@ -4,6 +4,10 @@
   <%= f.input :category %>
   <%= f.input :price %>
   <%= f.input :quantity %>
+  <% f.object.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+    <%= link_to "X", delete_photo_path(photo_index: @art.photos.index(photo), art_id: @art.id), method: :delete %>
+  <% end %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
