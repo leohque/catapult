@@ -1,5 +1,9 @@
+<% latest_art = [] %>
+<% Art.last(10).each_with_index do |latest, i| %>
+  <% latest_art << latest if latest.photos[0].present? %>
+<% end %>
+
 <% unless Art.count.zero? %>
-  <% last = Art.last(3) %>
   <div class="container">
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
