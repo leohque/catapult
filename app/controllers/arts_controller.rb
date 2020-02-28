@@ -3,16 +3,6 @@ class ArtsController < ApplicationController
 
   def index
     @arts = policy_scope(Art).order(created_at: :desc)
-
-    @users = User.geocoded
-    @markers = @users.map do |user|
-       {
-        lat: user.latitude,
-        lng: user.longitude,
-        infoWindow: render_to_string(partial: "users/info_window", locals: { user: user }),
-        image_url: helpers.asset_url('cat.png')
-      }
-    end
   end
 
   def show
