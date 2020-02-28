@@ -1,8 +1,16 @@
 <div class="container">
-  <%= @user.email %>
-  <ul>
+  <h2 class="m-3">Art by <%= @user.email %></h2>
+  <div class="container d-flex flex-wrap">
   <% @user.arts.each do |art| %>
-    <li><%= link_to art.name, art_path(art) %></li>
+    <% if art.photos[0].present? %>
+      <div class="card-category m-3 shadow rounded" style="background-image: url(<%= cl_image_path art.photos[0].key %>)">
+          <div class="card-category-description d-flex align-items-center justify-content-center text-center">
+              <p><a href="<%= user_profile_path(art.user.id) %>">
+                <%= art.name %><br>by <%= link_to art.user.email, user_profile_path(art.user.id) %></a><br>
+                <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}", class: 'btn btn-primary rounded-lg' %></p>
+          </div>
+      </div>
+    <% end %>
   <% end %>
-  </ul>
+  </div>
 </div>
