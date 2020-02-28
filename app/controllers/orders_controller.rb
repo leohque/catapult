@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  # skip_before_action :authenticate_user!, only: :cancel
   def index
     # @orders = Order.where(user: current_user)
     # @orders = current_user.orders.order(created_at: :desc)
@@ -32,14 +33,23 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def update
-    @order = Order.find(params[:id])
-  end
+  # def update
+  #   @order = Order.find(params[:id])
+  # end
 
   def destroy
     @order = Order.find(params[:id])
     authorize @order
     @order.destroy
+
+    redirect_to orders_path
+  end
+
+  def cancel
+    @order = Order.find(params[:id])
+    authorize @order
+    @order.status = "cancelled"
+    @order.save
 
     redirect_to orders_path
   end
