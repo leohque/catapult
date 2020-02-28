@@ -42,3 +42,6 @@ gem 'geocoder'
 
 # For Seeds
 gem 'faker'
+
+# active storage validations
+gem 'active_storage_validations'
