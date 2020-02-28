@@ -4,16 +4,14 @@
 
  <div class="container d-flex flex-wrap justify-content-center my-3">
   <% @arts.each do |art| %>
-    <div class="card-category m-3 shadow rounded" style="background-image: url(<%= cl_image_path art.photos[0].key %>)">
-        <div class="card-category-description d-flex align-items-center justify-content-center text-center">
-            <p><a href="<%= user_profile_path(art.user.id) %>">
-              <%= art.name %><br>by <%= link_to art.user.email, user_profile_path(art.user.id) %></a></p>
-        </div>
-    </div>
+    <% if art.photos[0].present? %>
+      <div class="card-category m-3 shadow rounded" style="background-image: url(<%= cl_image_path art.photos[0].key %>)">
+          <div class="card-category-description d-flex align-items-center justify-content-center text-center">
+              <p><a href="<%= user_profile_path(art.user.id) %>">
+                <%= art.name %><br>by <%= link_to art.user.email, user_profile_path(art.user.id) %></a></p>
+          </div>
+      </div>
+    <% end %>
     <!-- <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}" %> -->
   <% end%>
 </div>
-
-
-
-<!-- below is the right thing -->
