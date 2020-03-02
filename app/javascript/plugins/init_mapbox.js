@@ -22,6 +22,16 @@ const initMapbox = () => {
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
                                       mapboxgl: mapboxgl }));
 
+    map.addControl(new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true,
+      },
+      trackUserLocation: false,
+      showAccuracyCircle: false
+      },
+
+    ));
+
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // defining the popup info window
@@ -40,6 +50,12 @@ const initMapbox = () => {
 
     fitMapToMarkers(map, markers);
   }
+
+  // This auto-locates user after load
+  setTimeout(function() {
+      $(".mapboxgl-ctrl-geolocate").click();
+  },1000);
 };
 
 export { initMapbox };
+

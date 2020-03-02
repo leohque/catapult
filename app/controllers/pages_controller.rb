@@ -4,11 +4,16 @@ class PagesController < ApplicationController
   def home
     @users = User.geocoded
     @markers = @users.map do |user|
+      if user.photo.attached?
+        user_avatar = Cloudinary::Utils.cloudinary_url(user.photo.key, {})
+      else
+        user_avatar = 'catprofile.jpeg'
+      end
        {
-        lat: user.latitude,
-        lng: user.longitude,
+        lat: user.latitude + rand(-0.02..0.02),
+        lng: user.longitude + rand(-0.02..0.02),
         infoWindow: render_to_string(partial: "users/info_window", locals: { user: user }),
-        image_url: helpers.asset_url('cat.png')
+        image_url: helpers.asset_url(user_avatar)
       }
     end
   end
