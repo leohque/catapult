@@ -28,4 +28,8 @@ class OrderPolicy < ApplicationPolicy
   def cancel?
     record.user == user
   end
+
+  def confirm?
+    cancel?
+  end
 end
