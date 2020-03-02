@@ -23,7 +23,7 @@ class ArtsController < ApplicationController
     authorize @art
 
     if @art.save
-      redirect_to arts_path  #to root while we don't have a user_path
+      user_profile_path(current_user)
     else
       render :new
     end

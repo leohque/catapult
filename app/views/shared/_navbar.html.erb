@@ -16,7 +16,7 @@
           <%= link_to "My Orders", orders_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Profile", profile_path, class: "nav-link" %>
+          <%= link_to "Profile", user_profile_path(current_user), class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <% if current_user.photo.attached? %>
@@ -25,6 +25,10 @@
             <%= image_tag("catprofile.jpeg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
           <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Add New Art", new_art_path, class: "dropdown-item" %>
+            <%= link_to "My Profile", user_profile_path(current_user), class: "dropdown-item" %>
+            <%= link_to "My Orders", orders_path, class: "dropdown-item" %>
+            <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
