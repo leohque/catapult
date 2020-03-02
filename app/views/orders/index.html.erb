@@ -1,41 +1,80 @@
+<% total = 0 %>
+
+
 <div class="container">
   <h1 class="text-center mt-3">Your orders</h1>
   <div class="container d-flex justify-content-center my-3 flex-wrap">
     <% @orders.each do |order| %>
-      <div class="card w-50 m-3 rounded shadow p-3">
+      <% if order.art_orders.exists? %>
+        <div class="order-card w-50 m-3 rounded shadow p-3">
 
-        <div class="container d-flex justify-content-between my-3 flex-wrap">
-          <div>
-              <p class="mb-0">Created at: <%= order.created_at.strftime("%Y-%m-%d") %> </p>
-              <p>Status: <%= order.status %> </p>
+          <div class="container d-flex justify-content-between my-3 flex-wrap">
+            <p>Status: <%= order.status %> </p>
+            <p class="mb-0">Created at: <%= order.created_at.strftime("%Y-%m-%d") %> </p>
           </div>
-          <div  class="">
-            <%= link_to 'cancel this order', order_cancel_path(order), method: :patch %>
+
+
+          <% order.art_orders.each do |art_order| %>
+            <% total += art_order.art.price %>
+            <div class="card-product mt-3">
+              <div class="order-picture" style="background-image: url(<%= cl_image_path art_order.art.photos[0].key %>);">
+              </div>
+              <div class="card-product-infos">
+                <h2><%= art_order.art.name %></h2>
+                <p><%= art_order.art.description %>.</p>
+
+                <div class="d-flex justify-content-between">
+                  <p><strong> <%= art_order.art.price %> $ </strong> </p>
+                  <% if order.status == 'open' %>
+                    <%= link_to ('<i class="fas fa-trash"></i>').html_safe, art_order_path(art_order), method: :delete %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <h4 class="text-right mt-4 mb-4">Total: <%= total %> $ </h4>
+      <!--       <%= link_to 'remove this order', order_path(order), method: :delete %>-->
+
+          <div class="d-flex justify-content-between">
+            <% if order.status == 'open' %>
+
+              <div class="align-self-end">
+                <%= link_to 'Cancel this order', order_cancel_path(order), method: :patch %>
+              </div>
+              <div class="align-self-end">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                  Confirm order
+                </button>
+              </div>
+
+            <% end %>
           </div>
         </div>
-
-
-        <% order.art_orders.each do |art_order| %>
-
-        <div class="container d-flex justify-content-between align-items-center my-3">
-            <div>
-              <%= cl_image_tag art_order.art.photos[0].key, height:200, width:100, crop: :fill, class: '' %>
-            </div>
-
-            <div class="ml-3">
-              <li> Name: <%= art_order.art.name %> </li>
-              <li> Description: <%= art_order.art.description %> </li>
-              <li> Category: <%= art_order.art.category %> </li>
-              <li> Price: <%= art_order.art.price %> </li>
-              <%= link_to 'remove this item', art_order_path(art_order), method: :delete %>
-            </div>
-          </div>
-        <% end %>
-    <!--       <%= link_to 'remove this order', order_path(order), method: :delete %>-->
-
-
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
 
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Congratulations!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Your order has been placed. You will receive an email with all the details.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Go back to your orders</button>
+        <button type="button" class="btn btn-primary"><%= link_to 'Go to home page', root_path %></button>
+      </div>
+    </div>
+  </div>
+</div>

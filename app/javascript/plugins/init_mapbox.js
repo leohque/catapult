@@ -14,12 +14,23 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10' // TODO: edit style
+      style: 'mapbox://styles/cleliabailly/ck7amzs0b0hip1immqdidba52' // TODO: edit style
     });
+
 
     // Search Box in Map:
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
                                       mapboxgl: mapboxgl }));
+
+    map.addControl(new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true,
+      },
+      trackUserLocation: false,
+      showAccuracyCircle: false
+      },
+
+    ));
 
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
@@ -39,6 +50,12 @@ const initMapbox = () => {
 
     fitMapToMarkers(map, markers);
   }
+
+  // This auto-locates user after load
+  setTimeout(function() {
+      $(".mapboxgl-ctrl-geolocate").click();
+  },1000);
 };
 
 export { initMapbox };
+

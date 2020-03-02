@@ -1,2 +1,2 @@
-<h2><%= user.email %></h2>
-<p><%= user.address %></p>
+<p><%= link_to user.email, user_profile_path(user) %><br>
+  <%= link_to "View Art", user_profile_path(user) %></p>
