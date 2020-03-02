@@ -23,11 +23,13 @@ const initMapbox = () => {
 
     map.addControl(new mapboxgl.GeolocateControl({
       positionOptions: {
-        enableHighAccuracy: true
+        enableHighAccuracy: true,
       },
-      trackUserLocation: true
-      })
-    );
+      trackUserLocation: false,
+      showAccuracyCircle: false
+      },
+
+    ));
 
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
