@@ -39,7 +39,7 @@ class ArtsController < ApplicationController
     @art = Art.find(params[:id])
     authorize @art
     @art.update(art_params)
-    redirect_to art_path(@art)
+    redirect_to user_profile_path(current_user)
   end
 
   def delete_photo
