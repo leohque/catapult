@@ -53,4 +53,11 @@ class OrdersController < ApplicationController
 
     redirect_to orders_path
   end
+
+  def total_price(art_orders)
+
+    art_orders.each do |art_order|
+
+    end
+  end
 end
