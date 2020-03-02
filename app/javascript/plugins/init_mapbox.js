@@ -47,6 +47,12 @@ const initMapbox = () => {
 
     fitMapToMarkers(map, markers);
   }
+
+  // This auto-locates user after load
+  setTimeout(function() {
+      $(".mapboxgl-ctrl-geolocate").click();
+  },1000);
 };
 
 export { initMapbox };
+
