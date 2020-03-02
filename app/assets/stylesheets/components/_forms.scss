@@ -1,28 +1,20 @@
-.sign-up-form {
-  background-color: #CBB8A9;
-}
-
-
 .image-container {
-  // width:50%;
-  // height:100px;
-  background-image: 'form-img.jpg';
-  padding-right: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 92vh;
 }
 
-.form-container {
-  padding-left: 20px;
-
+/* Sign Up Form */
+.sign-up-form .image-container {
+  background-image: url('form-img.jpg');
 }
 
-.image-container img {
-  height: 500px;
+/* Login Form */
+.login-form .image-container {
+  background-image: url('login.jpg');
 }
 
-h4 {
-  padding-top: 30px;
-}
-
+/* Form Buttons */
 
 .form-actions button {
   color: #494949 !important;

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card m-3">
+  <div class="card m-3 rounded shadow">
     <div class="d-flex m-2 justify-content-between">
       <div class ="m-3">
         <% if @user.photo.attached? %>
@@ -53,6 +53,8 @@
       <% end %>
       <% end%>
     </div>
+
+  <%= link_to "Add New Art", new_art_path, class: 'btn btn-dark rounded shadow' %>
 
   </div>
 </div>
