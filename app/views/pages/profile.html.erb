@@ -2,7 +2,11 @@
 <div class="card m-3" >
   <div class="d-flex m-2 justify-content-md-around align-top around">
     <div class ="p-3">
-      <%= image_tag("profile.png", width: 200, height: 200) %>
+      <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, width:150, height: 150 %>
+      <% else %>
+        <%= image_tag("catprofile.jpeg", width: 150, height: 150) %>
+      <% end %>
       <br>
       <p class= "p-2 text-muted">
         <i class="fab fa-instagram"></i>

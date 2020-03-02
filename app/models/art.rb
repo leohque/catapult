@@ -5,6 +5,6 @@ class Art < ApplicationRecord
   has_many :orders, through: :art_orders
 
   validates :name, :description, :price, presence: { message: "This box can not be blank" }
-  validates :photos, attached: true, content_type: [:png, :jpg, :jpeg, :pdf]
+  validates :photos, attached: true, content_type: [:png, :jpg, :jpeg]
 
 end
