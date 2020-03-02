@@ -14,8 +14,9 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10' // TODO: edit style
+      style: 'mapbox://styles/cleliabailly/ck7amzs0b0hip1immqdidba52' // TODO: edit style
     });
+
 
     // Search Box in Map:
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
