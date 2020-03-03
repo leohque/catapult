@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
 
   has_one_attached :photo
-
+  validates :username, uniqueness: true
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
