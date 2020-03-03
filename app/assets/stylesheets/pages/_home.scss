@@ -1,1 +1,10 @@
 // Specific CSS for your home-page
+a {
+  color:black;
+  font-weight:500;
+}
+
+a:hover {
+  color:rgba(0,0,0,0.4);
+  text-decoration:none;
+}

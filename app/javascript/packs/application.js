@@ -9,3 +9,7 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 
 initMapbox();
 initAutocomplete();
+
+
+
+// document.getElementById('neighborhoodSearch').addEventListener('click', () => { window.alert('clicked'); })
