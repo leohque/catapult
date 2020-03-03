@@ -16,9 +16,9 @@
               <% else %>
                 <% if current_user.present? %>
                   <% if art.quantity.present? && art.quantity > 0 %>
-                    <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}", class: 'btn btn-primary rounded-lg' %>
+                    <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}", class: 'btn btn-dark rounded-lg' %>
                   <% elsif art.quantity.present? && art.quantity == 0 %>
-                    <a class="btn btn-light rounded-lg">Sold Out</a>
+                    <a class="btn btn-dark rounded-lg">Sold Out</a>
                   <% end %>
                 <% else %>
                   Sold
