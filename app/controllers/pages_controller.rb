@@ -3,6 +3,9 @@ class PagesController < ApplicationController
 
   def home
     @users = User.geocoded
+    if current_user.present?
+      @localartists = User.near("#{current_user.latitude}, #{current_user.longitude}")
+    end
     @artists = []
     @artists = @users.select do |user|
       user.arts.present?
