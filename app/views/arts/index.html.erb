@@ -17,8 +17,12 @@
                 <%= link_to "Edit", edit_art_path(art) %>
                 <%= link_to "Delete", art_path(art), method: :delete, data: { confirm: "Are you sure?" } %>
               <% else %>
-                <% if current_user.present? && art.quantity > 0 %>
-                  <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}", class: 'btn btn-primary rounded-lg' %>
+                <% if current_user.present? %>
+                  <% if art.quantity.present? && art.quantity > 0 %>
+                    <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}", class: 'btn btn-primary rounded-lg' %>
+                  <% elsif art.quantity.present? && art.quantity == 0 %>
+                    <a class="btn btn-light rounded-lg">Sold Out</a>
+                  <% end %>
                 <% else %>
                   Sold
                 <% end %>
