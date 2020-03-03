@@ -1,16 +1,10 @@
 
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(<%= asset_path('gerhard2.jpeg') %>);">
-
-  <div class="d-flex justify-content-around">
-    <div class ="text-monospace" style= "width: 600px">
-      <br>
-      <br>
-      <br>
-      <br>
-
-    <h2>FIND & SHARE LOCAL ART WITH </h2>
-    <h1><strong>CATAPULT</strong></h1>
-    <h3>Showcase your work or find your next favorite piece.</h3>
+  <div class="d-flex justify-content-around align-items-center">
+    <div class ="text-right" style= "width: 600px">
+      <h1 class="text-uppercase">Share & Connect With Local Artists</h1>
+      <h1><strong>CATAPULT</strong></h1>
+      <h3>Showcase your work or find your next favorite piece.</h3>
     </div>
     <div
     id="map"
@@ -19,17 +13,15 @@
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
     class="my-3 flex-grow"
-  ></div>
-
-</div>
-
+    ></div>
+  </div>
 </div>
 
 
 
 
 <div class="container d-flex justify-content-center">
-    <div class="card m-3 p-3 w-25">Share</div>
-    <div class="card m-3 p-3 w-25">Find</div>
-    <div class="card m-3 p-3 w-25">Connect</div>
-  </div>
+  <div class="card m-3 p-3 w-25">Share</div>
+  <div class="card m-3 p-3 w-25">Find</div>
+  <div class="card m-3 p-3 w-25">Connect</div>
+</div>
