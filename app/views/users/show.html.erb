@@ -7,12 +7,14 @@
         <% else %>
         <%= image_tag("catprofile.jpeg", width: 150, height: 150) %>
         <% end %>
-        <br>
         <p class="m-2 text-muted">
+          <a href="mailto:<%= @user.email %>"><i class="fas fa-envelope" style="color:rgba(0,0,0,0.6)"></i></a>
+          <!--
           <i class="fab fa-instagram"></i>
           <i class="fab fa-github"></i>
           <i class="fab fa-facebook"></i>
           <i class="fab fa-twitter"></i>
+        -->
         </p>
       </div>
       <div>
@@ -22,8 +24,6 @@
         <h4>📍 <%= @user.address %></h4>
         <a href="<%= @user.weblink %>" target="_blank"><%= @user.weblink %></a>
         <p><%= @user.bio %></p>
-        <span class="badge badge-pill badge-warning">Painting</span>
-        <span class="badge badge-pill badge-primary">Drawing</span>
       </div>
       <% if @user == current_user %>
         <%= link_to "Edit", edit_profile_path %>

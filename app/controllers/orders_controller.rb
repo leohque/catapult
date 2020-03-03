@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
     end
     @order.status = "confirmed"
     @order.save
-    redirect_to orders_path
+    redirect_to orders_path, notice: 'Aw yeah!! Your order has been successfully placed! You will receive an email confirmation.'
   end
 end
 

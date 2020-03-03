@@ -6,7 +6,7 @@
             <p>
               <a href="<%= user_profile_path(art.user.id) %>">
                 <%= art.name %><br>
-                by <%= link_to art.user.email, user_profile_path(art.user.id) %>
+                by <%= link_to art.user.username, user_profile_path(art.user.id) %>
               </a>
               <br><br>
               <% if art.user == current_user %>

@@ -21,7 +21,7 @@ a:hover {
 
 #random {
   /* ENHANCEMENT */
-  background-image: url('backgrounds/germana3.jpg');
+  background-image: url('backgrounds/julio.jpg');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -31,4 +31,15 @@ a:hover {
 /* Order Page */
 .order-page h1 {
   text-shadow:2px 5px 8px rgba(0,0,0,0.3);
+  color:white;
+}
+
+/* Map */
+.mapboxgl-popup-content {
+  box-shadow:0 1px 15px rgba(0,0,0,0.3) !important;
+}
+
+.info-window-text {
+  margin:0;
+  padding:10px;
 }

@@ -2,7 +2,7 @@
   <%= simple_form_for @art do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.input :category %>
+    <!-- <%= f.input :category %> -->
     <%= f.input :price %>
     <% f.object.photos.each do |photo| %>
       <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
