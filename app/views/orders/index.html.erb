@@ -1,45 +1,44 @@
+<div id="random" class="fullheight">
+  <div class="container order-page">
+    <h1 class="text-center mt-3">Your orders</h1>
+    <div class="container d-flex justify-content-center my-3 flex-wrap">
+      <% @orders.each do |order| %>
+        <% total = 0 %>
+        <% if order.art_orders.exists? %>
+          <div class="order-card w-50 m-3 rounded shadow p-3 bg-white">
 
+            <div class="container d-flex justify-content-between my-3 flex-wrap">
+              <p>Status: <%= order.status %> </p>
+              <p class="mb-0">Created at: <%= order.created_at.strftime("%Y-%m-%d") %> </p>
+            </div>
 
-<div class="container">
-  <h1 class="text-center mt-3">Your orders</h1>
-  <div class="container d-flex justify-content-center my-3 flex-wrap">
-    <% @orders.each do |order| %>
-      <% total = 0 %>
-      <% if order.art_orders.exists? %>
-        <div class="order-card w-50 m-3 rounded shadow p-3">
+            <% order.art_orders.each do |art_order| %>
+              <% total += art_order.art.price %>
+              <div class="card-product mt-3">
+                <div class="order-picture" style="background-image: url(<%= cl_image_path art_order.art.photos[0].key %>);">
+                </div>
+                <div class="card-product-infos">
+                  <h2><%= art_order.art.name %></h2>
+                  <p><%= art_order.art.description %>.</p>
 
-          <div class="container d-flex justify-content-between my-3 flex-wrap">
-            <p>Status: <%= order.status %> </p>
-            <p class="mb-0">Created at: <%= order.created_at.strftime("%Y-%m-%d") %> </p>
-          </div>
-
-          <% order.art_orders.each do |art_order| %>
-            <% total += art_order.art.price %>
-            <div class="card-product mt-3">
-              <div class="order-picture" style="background-image: url(<%= cl_image_path art_order.art.photos[0].key %>);">
-              </div>
-              <div class="card-product-infos">
-                <h2><%= art_order.art.name %></h2>
-                <p><%= art_order.art.description %>.</p>
-
-                <div class="d-flex justify-content-between">
-                  <p><strong> $<%= art_order.art.price %> </strong> </p>
-                  <% if order.status == 'open' %>
-                    <%= link_to ('<i class="fas fa-trash"></i>').html_safe, art_order_path(art_order), method: :delete %>
-                  <% end %>
+                  <div class="d-flex justify-content-between">
+                    <p><strong> $<%= art_order.art.price %> </strong> </p>
+                    <% if order.status == 'open' %>
+                      <%= link_to ('<i class="fas fa-trash"></i>').html_safe, art_order_path(art_order), method: :delete %>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-          <h4 class="text-right mt-4 mb-4">Total: $<%= total %> </h4>
-      <!--       <%= link_to 'remove this order', order_path(order), method: :delete %>-->
+            <% end %>
+            <h4 class="text-right mt-4 mb-4">Total: $<%= total %> </h4>
+        <!--       <%= link_to 'remove this order', order_path(order), method: :delete %>-->
 
-          <div class="d-flex justify-content-between">
-            <% if order.status == 'open' %>
+            <div class="d-flex justify-content-between">
+              <% if order.status == 'open' %>
 
-              <div class="align-self-end">
-                <%= link_to 'Cancel this order', order_cancel_path(order), method: :patch %>
-              </div>
+                <div class="align-self-end">
+                  <%= link_to 'Cancel this order', order_cancel_path(order), method: :patch %>
+                </div>
 
               <div class="align-self-end">
 
@@ -51,14 +50,12 @@
 
               </div>
 
-            <% end %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
-
-
-
 
