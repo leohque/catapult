@@ -7,7 +7,8 @@
               <a href="<%= user_profile_path(art.user.id) %>">
                 <%= art.name %><br>
                 by <%= link_to art.user.username, user_profile_path(art.user.id) %>
-              </a>
+                <br>
+                $<%= art.price %></a>
               <br><br>
               <% if art.user == current_user %>
                 <%= link_to "Edit", edit_art_path(art) %>
