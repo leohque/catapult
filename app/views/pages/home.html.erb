@@ -1,16 +1,14 @@
 
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(<%= asset_path('gerhard2.jpeg') %>);">
 
-  <div class="d-flex justify-content-around">
-    <div class ="text-monospace" style= "width: 600px">
-      <br>
-      <br>
-      <br>
-
-
-    <h2>FIND & SHARE LOCAL ART WITH </h2>
-    <h1><strong>CATAPULT'ART</strong></h1>
-    <h3>Showcase your work or find your next favorite piece.</h3>
+  <div class="d-flex justify-content-around align-items-center">
+    <div class ="text-right" style= "width: 600px">
+      <h1 class="text-uppercase">Share & Connect With Local Artists</h1>
+      <h3>Showcase your work or find your next favorite piece.</h3>
+   <!--    <form class="form-group">
+        <input type="text" placeholder="What's your neighborhood?" class="form-control">
+        <button href="#" id="neighborhoodSearch" class="btn btn-light form-control">Search</button>
+      </form> -->
     </div>
     <div
     id="map"
@@ -19,10 +17,45 @@
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
     class="my-3 flex-grow"
-  ></div>
-
+    ></div>
+  </div>
 </div>
 
+<% unless current_user.present? %>
+  <h2 class="text-center mt-3"><%= link_to "Log in", new_user_session_path %> to see local art...</h2>
+<% end %>
+
+<% if @localartists.present? %>
+  <h2 class="text-center mt-3">Artists near you...</h2>
+  <div class="container d-flex flex-wrap justify-content-center my-3">
+    <% @localartists.each do |localartist| %>
+      <% localartist.arts.each do |art| %>
+        <% if art.photos[0].present? %>
+          <div class="card-category m-3 shadow rounded" style="background-image: url(<%= cl_image_path art.photos[0].key %>)">
+              <div class="card-category-description d-flex align-items-center justify-content-center text-center">
+                  <p>
+                    <a href="<%= user_profile_path(art.user.id) %>">
+                      <%= art.name %><br>
+                      by <%= link_to art.user.email, user_profile_path(art.user.id) %>
+                    </a>
+                    <br><br>
+                    <% if art.user == current_user %>
+                      <%= link_to "Edit", edit_art_path(art) %>
+                      <%= link_to "Delete", art_path(art), method: :delete, data: { confirm: "Are you sure?" } %>
+                    <% else %>
+                      <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}", class: 'btn btn-primary rounded-lg' %>
+                    <% end %>
+                </p>
+              </div>
+          </div>
+        <% end %>
+      <% end%>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="container d-flex justify-content-center">
+  <div class="card m-3 p-3 w-25">Share</div>
+  <div class="card m-3 p-3 w-25">Find</div>
+  <div class="card m-3 p-3 w-25">Connect</div>
 </div>
-
-

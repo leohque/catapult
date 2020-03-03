@@ -3,7 +3,14 @@ class PagesController < ApplicationController
 
   def home
     @users = User.geocoded
-    @markers = @users.map do |user|
+    if current_user.present?
+      @localartists = User.near("#{current_user.latitude}, #{current_user.longitude}")
+    end
+    @artists = []
+    @artists = @users.select do |user|
+      user.arts.present?
+    end
+    @markers = @artists.map do |user|
       if user.photo.attached?
         user_avatar = Cloudinary::Utils.cloudinary_url(user.photo.key, {})
       else
