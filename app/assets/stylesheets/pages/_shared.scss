@@ -7,3 +7,28 @@ a:hover {
   color:rgba(0,0,0,0.4);
   text-decoration:none;
 }
+
+
+
+/* For Random Background */
+
+.fullheight {
+  margin:0;
+  height:92vh !important;
+  padding:20px;
+
+}
+
+#random {
+  /* ENHANCEMENT */
+  background-image: url('backgrounds/germana3.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+/* Order Page */
+.order-page h1 {
+  text-shadow:2px 5px 8px rgba(0,0,0,0.3);
+}

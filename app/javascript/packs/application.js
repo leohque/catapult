@@ -10,6 +10,9 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 initMapbox();
 initAutocomplete();
 
+import { randombg } from '../plugins/random_background';
+
+randombg();
 
 
 // document.getElementById('neighborhoodSearch').addEventListener('click', () => { window.alert('clicked'); })
