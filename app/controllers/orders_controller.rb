@@ -58,19 +58,16 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     authorize @order
     @order.art_orders.each do |art_order|
-      if art_order.art.quantity < 0
+      if art_order.art.quantity <= 0
         redirect_to :orders_path, notice: "#{art_order.name} has already been sold."
+      else
+        art_order.art.quantity -= 1
+        @order.status = "confirmed"
+        @order.save
+        art_order.art.save
+        redirect_to orders_path
       end
     end
-
-    @order.art_orders.each do |art_order|
-      art_order.art.quantity -= 1
-    end
-
-    @order.status = "confirmed"
-    @order.save
-
-    redirect_to orders_path
   end
 end
 
