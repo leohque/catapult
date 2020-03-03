@@ -57,7 +57,26 @@ class OrdersController < ApplicationController
   def confirm
     @order = Order.find(params[:id])
     authorize @order
+    @order.art_orders.each do |art_order|
+      if art_order.art.quantity < 0
+        redirect_to :orders_path, notice: "#{art_order.name} has already been sold."
+      end
+    end
+
+    @order.art_orders.each do |art_order|
+      art_order.art.quantity -= 1
+    end
+
     @order.status = "confirmed"
     @order.save
+
+    redirect_to orders_path
   end
 end
+
+# <% if result == nil %>
+#   <%= javascript_tag "alert('hello welcome')" %>
+# <% end %>
+# Or even simpler:
+
+# <%= javascript_tag "alert('hello welcome')" unless result %>
