@@ -42,7 +42,9 @@
                 <%= link_to "Edit", edit_art_path(art) %>
                 <%= link_to "Delete", art_path(art), method: :delete, data: { confirm: "Are you sure?" } %>
               <% else %>
-                <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}", class: 'btn btn-primary rounded-lg' %>
+                <% if current_user.present? %>
+                  <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}", class: 'btn btn-primary rounded-lg' %>
+                <% end %>
               <% end %>
             </p>
           </div>
