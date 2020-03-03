@@ -10,37 +10,35 @@
     <div class="form-inputs d-flex">
       <div>
         <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, width:150, height:150, class: 'mr-3' %>
+        <%= cl_image_tag current_user.photo.key, width:150, height:150, class: 'mr-3' %>
         <% else %>
-          <%= image_tag("catprofile.jpeg", width:150, height:150, class: 'mr-3') %>
+        <%= image_tag("catprofile.jpeg", width:150, height:150, class: 'mr-3') %>
         <% end %>      <%= f.input :photo, label: "Edit profile photo", as: :file %>
       </div>
 
-
       <div>
-      <%= f.input :username,
-      required: true,
-      input_html: { autocomplete: "username" } %>
+        <%= f.input :username,
+        required: true,
+        input_html: { autocomplete: "username" } %>
 
-      <%= f.input :bio,
-      required: false,
-      input_html: { autocomplete: "bio" } %>
+        <%= f.input :bio,
+        required: false,
+        input_html: { autocomplete: "bio" } %>
 
-      <%= f.input :address,
-      required: true,
-      input_html: { autocomplete: "address", id: 'address-search' } %>
+        <%= f.input :address,
+        required: true,
+        input_html: { autocomplete: "address", id: 'address-search' } %>
 
-      <%= f.input :weblink,
-      required: false,
-      input_html: { autocomplete: "weblink" } %>
+        <%= f.input :weblink,
+        required: false,
+        input_html: { autocomplete: "weblink" } %>
 
 
         <div class="form-actions">
           <%= f.button :submit, "Update", class: 'btn btn-light rounded shadow' %>
         </div>
       </div>
-
-
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -1,0 +1,35 @@
+<div class="container d-flex flex-wrap justify-content-center my-3">
+  <% artists.each do |artist| %>
+    <% artist.arts.each do |art| %>
+      <% if art.photos[0].present? %>
+        <div class="card-category m-3 shadow rounded" style="background-image: url(<%= cl_image_path art.photos[0].key %>)">
+            <div class="card-category-description d-flex align-items-center justify-content-center text-center">
+              <p>
+                <a href="<%= user_profile_path(art.user.id) %>">
+                  <%= art.name %><br>
+                  by <%= link_to art.user.email, user_profile_path(art.user.id) %>
+                  <br>
+                  $<%= art.price %>
+                </a>
+                <br><br>
+                <% if art.user == current_user %>
+                  <%= link_to "Edit", edit_art_path(art) %>
+                  <%= link_to "Delete", art_path(art), method: :delete, data: { confirm: "Are you sure?" } %>
+                <% else %>
+                  <% if current_user.present? %>
+                    <% if art.quantity.present? && art.quantity > 0 %>
+                      <%= link_to 'add to cart', orders_path(art_id: art.id), method: :post, remote: true, id: "btn-link-#{art.id}", class: 'btn btn-dark rounded-lg' %>
+                    <% elsif art.quantity.present? && art.quantity == 0 %>
+                      <a class="btn btn-dark rounded-lg">Sold Out</a>
+                    <% end %>
+                  <% else %>
+                    Sold
+                  <% end %>
+                <% end %>
+              </p>
+            </div>
+        </div>
+      <% end %>
+    <% end%>
+  <% end %>
+</div>

@@ -31,44 +31,41 @@ puts 'Creating users...'
     longitude: rand(-180..80)
   )
   user.save!
-end
 
-puts 'Creating arts...'
-
-all_users = User.all
-
-20.times do
-  art = Art.new(
-    name: Faker::Games::Pokemon.name,
-    description: Faker::Lorem.paragraph,
-    category: "statue",
-    price: Faker::Number.within(range: 100..1000),
-    quantity: Faker::Number.within(range: 1..10),
-    user: all_users.sample
-  )
-  file = URI.open('https://img.olx.com.br/thumbs256x256/85/858930021988067.jpg')
-  art.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
-  art.save!
-end
-
-puts "Creating orders..."
-20.times do
-  order = Order.new(
-    user: all_users.sample,
-    status: Order::STATUS.sample) # syntax :: is for calling constant variables (eg: STATUS)
-  order.save!
-end
-
-orders = Order.all
-arts = Art.all
-puts "Creating art_orders"
-20.times do
-  art_order = ArtOrder.new(
-    art: arts.sample,
-    order: orders.sample,
-    price: rand(10..100)
+  5.times do
+    art = Art.new(
+      name: Faker::Games::Pokemon.name,
+      description: Faker::Lorem.paragraph,
+      category: "statue",
+      price: Faker::Number.within(range: 100..1000),
+      quantity: Faker::Number.within(range: 1..10),
+      user: user
     )
-  art_order.save!
+    file = URI.open('https://img.olx.com.br/thumbs256x256/85/858930021988067.jpg')
+    art.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+    art.save!
+  end
+
+  5.times do
+    order = Order.new(
+    user: user,
+    status: Order::STATUS.sample) # syntax :: is for calling constant variables (eg: STATUS)
+    order.save!
+  end
+
 end
+
+
+# orders = Order.all
+# arts = Art.all
+# puts "Creating art_orders"
+# 20.times do
+#   art_order = ArtOrder.new(
+#     art: arts.sample,
+#     order: orders.sample,
+#     price: rand(10..100)
+#     )
+#   art_order.save!
+# end
 
 puts 'Finished!'

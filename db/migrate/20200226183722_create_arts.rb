@@ -5,7 +5,7 @@ class CreateArts < ActiveRecord::Migration[5.2]
       t.string :description
       t.string :category
       t.integer :price
-      t.integer :quantity
+      t.integer :quantity, :default => 1
       t.references :user, foreign_key: true
 
       t.timestamps
