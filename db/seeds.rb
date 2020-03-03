@@ -20,10 +20,15 @@ puts 'Creating users...'
 
 3.times do
   user = User.new(
+    username: Faker::Games::Pokemon.name,
+    bio: Faker::Movies::HarryPotter.quote,
+    weblink: "www.awebsite.com",
     email:    Faker::Internet.email,
     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
     password: "123456",
-    password_confirmation: "123456"
+    password_confirmation: "123456",
+    latitude: rand(-90..90),
+    longitude: rand(-180..80)
   )
   user.save!
 end

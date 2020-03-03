@@ -7,7 +7,7 @@ class Art < ApplicationRecord
   validates :name, :description, :price, presence: { message: "This box can not be blank" }
   validates :photos, attached: true, content_type: [:png, :jpg, :jpeg]
 
-  after_commit :create_hash_tags, on: :create
+  # after_commit :create_hash_tags, on: :create
 
 
   # def create_hashtags
