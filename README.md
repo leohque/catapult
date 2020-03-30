@@ -1,1 +1,3 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+# prototype rails web app to share & find local art/artists in your community
+
+http://catapult-art.herokuapp.com
